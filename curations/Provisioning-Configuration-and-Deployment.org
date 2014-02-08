@@ -2,11 +2,11 @@
 From Provisioning to Deployment and Everything In-between
 
 ** Index
-1. [Background & Terminology]
-2. [Introduce Philosophies & Methodologies]
-3. [Present and Analyze Tools & Services]
-4. [Propose Assembly Line (End-to-end ops toolchain)]
-5. [Further Readings, Additional Resources]
+1. [[#1][Background & Terminology]]
+2. [[#2][Introduce Philosophies & Methodologies]]
+3. [[#3][Present and Analyze Tools & Services]]
+4. [[#4][Propose Assembly Line (End-to-end ops toolchain)]]
+5. [[#5][Further Readings, Additional Resources]]
 ** [[#1]]. Background & Terminology
 
 The art of architecting software, like designing a vehicle, is a very
@@ -42,7 +42,8 @@ requirements or constraints of its consumers
 
 *** Dream
 The unit of handoff will no longer be the code repository but an
-isolated, configured, deployable container. T
+isolated, deployable container, configured with dependencies, scm
+hooks, continuous integration, and monitoring.
 
 ** [[#2]]. Philosophies & Methodologies
 *** [[http://12factor.net/][The Twelve-Factor App]]
