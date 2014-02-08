@@ -78,19 +78,6 @@ Treat logs as event streams
 ***** [[http://12factor.net/admin-processes][XII. Admin processes]]
 Run admin/management tasks as one-off processes
 
-
-
-Present philosophies and methodologies for automating software development process and application deployment
-2. Tools & Services Identify tools and services for Systems/Application Provisioning, Setup, and Deployment
-3. Analyze, classify, and compare each of these tools.
-
-
-Propose an  / Assembly Line (Ops Toolchain
-
-4. creating an ops toolchain for software development (building flexible software processes) putting all the pieces together
-
-curation responses to each section, ask for help (guest posts)
-
 ** [[#3]]. Stages
 *** Provisioning
 **** Programmable System/App Setup & Configuration Management
