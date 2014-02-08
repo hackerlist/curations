@@ -1,0 +1,168 @@
+* Devops on Rails: From Provisioning to Deployment and Everything In-between
+
+** Index
+1. Background & Terminology
+2. Introduce Philosophies & Methodologies
+3. Present and Analyze Tools & Services
+4. Propose Assembly Line (End-to-end ops toolchain)
+5. Further Readings, Additional Resources
+** 1. Background & Terminology
+
+The art of architecting software, like designing a vehicle, is a very
+creative and dynamic process. However, the underlying principals,
+processes, and stages (e.g. fabrication, testing/QA, shipping) need
+not be. In fact, I argue it's imperative they should be discussed,
+well understood, solidified into standards, and manifested as a
+single, flexible, streamlined software assembly line.
+
+This reference is deeply inspired by [[12factor.net][12Factor]] methodology and is
+written with hopes of (a) educating developers of the state of DevOps
+best practices and tools and (b) catylyzing efforts towards the
+formation of a specification/standard, like Rails & Yeoman, for
+streamlining and automating away system administration.
+
+12Factor does a tremendous job of introducing best practices, guiding
+principles, and defining the discrete aspects of developing software
+services (all of which is well needed and valuable). This document
+instead describes software development as 6 (non-linear/concurrent)
+stages (Provisioning, Developing, Quality Assurance, Deployment,
+Monitoring, and Scaling). It does seek to define the workings of each
+stage but rather questions how these stages may be unified into a
+single, continuous, flexible process/framework; an assembly line,
+connected by callbacks and infused with quality assurance goodness.
+
+*** Definitions
+*provisioning* is the process of preparing and equipping a network or
+environment to provide services to its users
+
+*scaling* is the process by which a system or application is
+made/optimized to meet the robustness and performance
+requirements or constraints of its consumers
+
+*** Dream
+The unit of handoff will no longer be the code repository but an
+isolated, configured, deployable container. T
+
+** 2. Philosophies & Methodologies
+*** [[http://12factor.net/][The Twelve-Factor App]]
+The twelve-factor app is a methodology for building software-as-a-service apps
+**** Examples
+[[http://blog.gopheracademy.com/day-03-building-a-twelve-factor-app-in-go][Building 12 factor apps in Go]]
+[[https://blog.heroku.com/archives/2013/8/15/twelve-factor-apps][Building Twelve Factor Apps on Heroku]]
+
+**** Steps
+***** [[http://12factor.net/codebase][I. Codebase]]
+One codebase tracked in revision control, many deploys
+***** [[http://12factor.net/dependencies][II. Dependencies]]
+Explicitly declare and isolate dependencies
+***** [[http://12factor.net/dependencies][III. Config]]
+Store config in the environment
+***** [[http://12factor.net/backing-services][IV. Backing Services]]
+Treat backing services as attached resources
+***** [[http://12factor.net/build-release-run][V. Build, release, run]]
+Strictly separate build and run stages
+***** [[http://12factor.net/processes][VI. Processes]]
+Execute the app as one or more stateless processes
+***** [[http://12factor.net/port-binding][VII. Port binding]]
+Export services via port binding
+***** [[http://12factor.net/concurrency][VIII. Concurrency]]
+Scale out via the process model
+***** [[http://12factor.net/disposability][IX. Disposability]]
+Maximize robustness with fast startup and graceful shutdown
+***** [[http://12factor.net/dev-prod-parity][X. Dev/prod parity]]
+Keep development, staging, and production as similar as possible
+***** [[http://12factor.net/logs][XI. Logs]]
+Treat logs as event streams
+***** [[http://12factor.net/admin-processes][XII. Admin processes]]
+Run admin/management tasks as one-off processes
+
+
+
+Present philosophies and methodologies for automating software development process and application deployment
+2. Tools & Services Identify tools and services for Systems/Application Provisioning, Setup, and Deployment
+3. Analyze, classify, and compare each of these tools.
+
+
+Propose an  / Assembly Line (Ops Toolchain
+
+4. creating an ops toolchain for software development (building flexible software processes) putting all the pieces together
+
+curation responses to each section, ask for help (guest posts)
+
+** 3. Stages
+*** Provisioning
+**** Programmable System/App Setup & Configuration Management
+These frameworks are crafted to help you manage your servers by
+writing code, not by running commands.
+***** Tools/Services
+****** [[http://www.getchef.com/chef/][Chef]] - automation platform that transforms infrastructure into code.
+*wiki* https://wiki.opscode.com/display/chef/Home
+****** [[http://puppetlabs.com/puppet/puppet-open-source][Puppet]] - open-source configuration management tool (ruby)
+****** [[http://www.saltstack.com/community/][Salt]] - builds configuration management on top of the remote executions system. 
+The philosophy is that the two aspects of system management are
+fundamentally linked. Salt is also intended to be fast, easy to use
+and lean, lightweight and easy to set up.
+***** Comparison
+****** Chef v. Puppet
+http://www.infoworld.com/d/data-center/puppet-or-chef-the-configuration-management-dilemma-215279
+****** Salt v. Puppet
+https://groups.google.com/forum/#!topic/salt-users/tfCu_dK10ZE
+http://www.infoworld.com/d/data-center/review-puppet-vs-chef-vs-ansible-vs-salt-231308
+**** Service/Infrastructure Orchestration
+These solutions automate setup, configuration, deployment, and
+interoperability/chaining of services to any
+cloud. (e.g. rabbitmq-server -> ceph -> postgres)
+***** Tools/Services
+****** [[https://juju.ubuntu.com/][Ubuntu JUJU]] - automate cloud infrastructure. Configure, manage, maintain, deploy & scale using best-practice 'Charms' on any public, private or hybrid cloud (GUI / CLI).
+****** [[http://www.ansible.com/home][Ansible]] - automate apps and IT infrastructure. Application Deployment + Configuration Management + Continuous Delivery.
+*github* https://github.com/ansible/ansible
+*wikipedia* https://en.wikipedia.org/wiki/Ansible
+*description* Avoid writing scripts or custom code to deploy and update
+your applications— automate in a language that approaches plain
+English, using SSH, with no agents to install on remote systems.
+
+****** [[http://cfengine.com/][CFEngine]] - open-source & commercial continuous/health-monitoring configuration Management Software for Agile System Administrators
+****** [[http://www.gigaspaces.com/cloudify-devops-cloud-application-management/meet-cloudify][Cloudify]] - (gigaspaces) deploy, manage, & scale enterprise apps on openstack cloud.
+****** [[http://puppetlabs.com/mcollective][MCollective]] - Marionette Collective AKA MCollective is a framework to build server orchestration or parallel job execution systems.
+Programmatic execution of Systems Administration actions on clusters
+of servers. In this regard we operate in the same space as tools like
+Func, Fabric or Capistrano.
+
+***** APIs
+[[http://libcloud.apache.org/][Apache Libcloud]] - One Interface To Rule Them All. Python library for
+interacting with many of the popular cloud service providers using a
+unified API.
+**** System-Level Automation (Environments)
+***** Tools/Services
+****** [[http://docker.io][Docker]] - open-source project to easily create lightweight, portable, self-sufficient containers from any application (ruby).
+****** [[http://www.vagrantup.com/][Vagrant]] - free and open-source software for creating and configuring lightweight, reproducible, and portable virtual development environments.
+***** Comparisons
+****** Docker v. Vagrant
+http://stackoverflow.com/questions/16647069/should-i-use-vagrant-or-docker-io-for-creating-an-isolated-envinronment
+
+*** Development
+
+*** Quality Assurance
+*** Deployment
+**** Heroku
+**** Rackspace
+**** Amazon Web Services (AWS)
+
+*** Monitoring
+New Relics
+
+*** Scaling
+
+** 4. Assembly Lines
+Here are a few attempt in the right direction towards afformentioned
+automation / assembly line:
+*** [[http://deis.io/][Deis]] - open source PaaS that makes it easy to deploy and scale LXC
+containers and Chef nodes used to host applications, databases,
+middleware and other services. Deis leverages Chef, Docker and Heroku
+Buildpacks to provide a private PaaS that is lightweight and flexible
+*** [[orchardup.com][Orchardup]] - Use Docker to run anything you can think of in 2 seconds
+flat, without having to set up or manage servers.
+
+** 5. Further Readings
+** 6. Similar Guides & Resources
+*** [[https://github.com/iDVB/devopsguide][DevOps Guide to the Galaxy]]
